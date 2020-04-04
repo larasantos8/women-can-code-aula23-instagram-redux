@@ -1,8 +1,14 @@
-import React from "react";
+import React, { Component } from "react";
 import { FiHeart } from 'react-icons/fi'
+import { connect } from 'react-redux'
 
-export default function TimeLine() {
+class TimeLine extends Component {
 
+  curtir = () => {
+    this.props.dispatch({ type: 'LIKE'})
+  }
+
+  render(){
   return (
     <div className="post">
       <header>
@@ -15,10 +21,13 @@ export default function TimeLine() {
       <div className="post-image">
         <img src="https://www.publicdomainpictures.net/pictures/90000/velka/mars.jpg" alt="post" />
       </div>
-      <div className="post-likes">
+      <div className="post-likes" onClick = {this.curtir}>
         <FiHeart />
       </div>
       <p>Waving goodbye to a spacecraft.</p>
     </div>
   );
 }
+}
+
+export default connect()(TimeLine)
