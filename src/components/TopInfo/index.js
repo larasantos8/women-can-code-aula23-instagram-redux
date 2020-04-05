@@ -1,19 +1,43 @@
 import React, { Component } from "react";
-import { FiUser, FiHeart } from "react-icons/fi";
+import { FiUser, FiHeart, FiHome } from "react-icons/fi";
+import { connect } from "react-redux";
+import { Link, BrowserRouter } from 'react-router-dom'
 
-export default class TopInfo extends Component {
+class TopInfo extends Component {
+
   render() {
     return (
       <div className="top-info">
         <span>
-          <FiHeart />
-          <b>1</b>
+        <BrowserRouter>
+        <Link to="/">
+          <FiHome />
+          <b></b>
+          </Link>
+          </BrowserRouter>
         </span>
         <span>
+          <FiHeart />
+          <b>{this.props.contador}</b>
+        </span>
+        <span>
+          <BrowserRouter>
+          <Link to ="/perfil">
           <FiUser />
-          Eu
+          {this.props.user}
+          </Link>
+          </BrowserRouter>
         </span>
       </div>
     );
   }
 }
+
+function mapStateToProps(state){
+  return{
+    contador: state.payload.likes,
+    user: state.payload.name
+  }
+}
+
+export default connect(mapStateToProps)(TopInfo)

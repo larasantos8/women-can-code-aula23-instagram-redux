@@ -1,5 +1,4 @@
 import React from "react";
-
 import TopInfo from "../TopInfo";
 import Logo from "../../images/logo-instagram.png";
 
