@@ -5,6 +5,11 @@ import axios from 'axios'
 
 class TimeLine extends Component {
 
+
+  state = {
+    posts: []
+  }
+
   curtir = async () => {
     this.props.user.likes++
 
@@ -17,43 +22,41 @@ class TimeLine extends Component {
       }) 
   }
 
-  // componentDidMount = async () => {
-  //   await axios.get("http://localhost:3000/posts")
-  //   .then(resposta => {
-  //     this.props.dispatch({
-  //       type: 'GET_POSTS',
-  //       payload: resposta.data
-  //     })
-  //   })
-  // }
+  componentDidMount = () => {
+    axios.get("http://localhost:3000/posts")
+      .then(resposta => {
+        this.setState({ posts: resposta.data })
+      })
+  }
 
   render(){
-    //const { user, userPicture, postPicture, location, description } = 
+    const { user, userPicture, postPicture, location, description } = this.props.posts
 
-  return (
-    <div className="post">
-      <header>
-        <img src="https://randomuser.me/api/portraits/women/17.jpg" alt="user" />
-        <div className="post-user">
-          <strong>Lara</strong> 
-          <span>Mars</span>
+    return (
+      <div className="post">
+        <header>
+          <img src="https://randomuser.me/api/portraits/women/17.jpg" alt="user" />
+          <div className="post-user">
+            <strong>Lara</strong> 
+            <span>Mars</span>
+          </div>
+        </header>
+        <div className="post-image">
+          <img src="https://www.publicdomainpictures.net/pictures/90000/velka/mars.jpg" alt="post" />
         </div>
-      </header>
-      <div className="post-image">
-        <img src="https://www.publicdomainpictures.net/pictures/90000/velka/mars.jpg" alt="post" />
+        <div className="post-likes" onClick = {this.curtir}>
+          <FiHeart />
+        </div>
+        <p>Waving goodbye to a spacecraft.</p>
       </div>
-      <div className="post-likes" onClick = {this.curtir}>
-        <FiHeart />
-      </div>
-      <p>Waving goodbye to a spacecraft.</p>
-    </div>
-  );
-}
+    );
+  }
 }
 
 function mapStateToProps(state){
   return{
-   user: state.payload
+  //  user: state.payload
+  posts: state.posts
   }
 }
 

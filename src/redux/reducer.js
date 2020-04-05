@@ -3,7 +3,8 @@ import { createStore } from 'redux';
 const initialState = {
   payload: {},
   profile: {},
-  stories: {}
+  stories: [],
+  posts: []
 };
 
 function reducer(state = initialState, action) {
@@ -18,10 +19,11 @@ function reducer(state = initialState, action) {
       ...state,
       payload: action.payload
     };
-    // case 'GET_POSTS':
-    // return {
-    //   payload: action.payload
-    // };
+    case 'GET_POSTS':
+    return {
+      ...state,
+      posts: action.payload
+    };
     case 'GET_PROFILE':
     return {
       ...state,
