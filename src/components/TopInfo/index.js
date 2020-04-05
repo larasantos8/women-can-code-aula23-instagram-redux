@@ -1,31 +1,32 @@
 import React, { Component } from "react";
-import { FiUser, FiHeart } from "react-icons/fi";
-import axios from 'axios'
+import { FiUser, FiHeart, FiHome } from "react-icons/fi";
 import { connect } from "react-redux";
-
+import { Link, BrowserRouter } from 'react-router-dom'
 
 class TopInfo extends Component {
-
-  componentDidMount = async () => {
-    await axios.get("http://localhost:3000/user")
-    .then(resposta => {
-      this.props.dispatch({
-        type: 'GET_USER',
-        payload: resposta.data
-      })
-    })
-  }
 
   render() {
     return (
       <div className="top-info">
         <span>
+        <BrowserRouter>
+        <Link to="/">
+          <FiHome />
+          <b></b>
+          </Link>
+          </BrowserRouter>
+        </span>
+        <span>
           <FiHeart />
           <b>{this.props.contador}</b>
         </span>
         <span>
+          <BrowserRouter>
+          <Link to ="/perfil">
           <FiUser />
-          {this.props.name}
+          {this.props.user}
+          </Link>
+          </BrowserRouter>
         </span>
       </div>
     );
@@ -34,8 +35,8 @@ class TopInfo extends Component {
 
 function mapStateToProps(state){
   return{
-    contador: state.count,
-    user: state.payload
+    contador: state.payload.likes,
+    user: state.payload.name
   }
 }
 

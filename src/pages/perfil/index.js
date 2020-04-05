@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import axios from 'axios'
 
-export default class Prfil extends Component {
+export default class Perfil extends Component {
 
     render(){
 
