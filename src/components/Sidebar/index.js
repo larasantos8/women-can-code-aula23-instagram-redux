@@ -1,11 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import axios from 'axios'
 
 
 class Sidebar extends Component {
-  render(){
-    const stories = this.props.stories
+  state = {
+    stories: []
+  }
 
+
+  componentDidMount = () => {
+    axios.get("http://localhost:3000/stories")
+      .then(resposta => {
+        this.setState({ stories: resposta.data })
+      })
+  }
+
+
+  render(){
   return (
     <div>
       <div className="user-info">
@@ -21,17 +33,19 @@ class Sidebar extends Component {
 
       <div className="stories">
         <h2>Stories</h2>
-        state.stories.map{}
+        {this.state.stories.map(storie => (
+        <div key = {storie.id}>
         <div className="storie">
           <div className="storie-image">
-            <img src={this.props.storiePicture} alt="user" />
+            <img src={storie.userPicture} alt="user" />
           </div>
           <div className="storie-user">
-            <strong>{this.props.storieUser}</strong>
-            <span>{this.props.storieTime}</span>
+            <strong>{storie.user}</strong>
+            <span>{storie.time}</span>
           </div>
         </div>
-
+        </div>
+        ))}
       </div>
     </div>
   );
@@ -44,7 +58,6 @@ function mapStateToProps(state){
     user: state.payload.name,
     username: state.payload.username,
     picture: state.profile.userPicture,
-    stories: state.stories
   }
 }
 

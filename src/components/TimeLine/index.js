@@ -5,7 +5,6 @@ import axios from 'axios'
 
 class TimeLine extends Component {
 
-
   state = {
     posts: []
   }
@@ -30,24 +29,27 @@ class TimeLine extends Component {
   }
 
   render(){
-    const { user, userPicture, postPicture, location, description } = this.props.posts
 
     return (
       <div className="post">
+        {this.state.posts.map(post => (
+          <div key = {post.id}>
         <header>
-          <img src="https://randomuser.me/api/portraits/women/17.jpg" alt="user" />
+          <img src= {post.userPicture} alt="user" />
           <div className="post-user">
-            <strong>Lara</strong> 
-            <span>Mars</span>
+            <strong>{post.user}</strong> 
+            <span>{post.location}</span>
           </div>
         </header>
         <div className="post-image">
-          <img src="https://www.publicdomainpictures.net/pictures/90000/velka/mars.jpg" alt="post" />
+          <img src={post.postPicture} alt="post" />
         </div>
         <div className="post-likes" onClick = {this.curtir}>
           <FiHeart />
         </div>
-        <p>Waving goodbye to a spacecraft.</p>
+        <p>{post.description}</p>
+        </div>
+        ))}
       </div>
     );
   }
@@ -55,8 +57,7 @@ class TimeLine extends Component {
 
 function mapStateToProps(state){
   return{
-  //  user: state.payload
-  posts: state.posts
+  user: state.payload
   }
 }
 

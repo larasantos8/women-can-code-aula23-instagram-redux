@@ -23,14 +23,6 @@ class Home extends Component{
         payload: resposta.data
       })
     })
-
-    await axios.get("http://localhost:3000/stories")
-    .then(resposta => {
-      this.props.dispatch({
-        type: 'GET_STORIES',
-        payload: resposta.data
-      })
-    })
   }
   
   render(){

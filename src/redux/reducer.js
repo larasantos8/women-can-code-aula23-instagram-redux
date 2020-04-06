@@ -19,21 +19,11 @@ function reducer(state = initialState, action) {
       ...state,
       payload: action.payload
     };
-    case 'GET_POSTS':
-    return {
-      ...state,
-      posts: action.payload
-    };
     case 'GET_PROFILE':
     return {
       ...state,
       profile: action.payload
-    };
-    case 'GET_STORIES':
-    return {
-      ...state,
-      stories: action.payload
-    };               
+    };              
     default:
     return state;
   }
