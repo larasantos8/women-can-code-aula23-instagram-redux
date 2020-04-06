@@ -3,7 +3,6 @@ import { createStore } from 'redux';
 const initialState = {
   payload: {},
   profile: {},
-  stories: [],
   posts: []
 };
 
