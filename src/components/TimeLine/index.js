@@ -5,6 +5,10 @@ import axios from 'axios'
 
 class TimeLine extends Component {
 
+  state = {
+    posts: []
+  }
+
   curtir = async () => {
     this.props.user.likes++
 
@@ -17,43 +21,43 @@ class TimeLine extends Component {
       }) 
   }
 
-  // componentDidMount = async () => {
-  //   await axios.get("http://localhost:3000/posts")
-  //   .then(resposta => {
-  //     this.props.dispatch({
-  //       type: 'GET_POSTS',
-  //       payload: resposta.data
-  //     })
-  //   })
-  // }
+  componentDidMount = () => {
+    axios.get("http://localhost:3000/posts")
+      .then(resposta => {
+        this.setState({ posts: resposta.data })
+      })
+  }
 
   render(){
-    //const { user, userPicture, postPicture, location, description } = 
 
-  return (
-    <div className="post">
-      <header>
-        <img src="https://randomuser.me/api/portraits/women/17.jpg" alt="user" />
-        <div className="post-user">
-          <strong>Lara</strong> 
-          <span>Mars</span>
+    return (
+      <div className="post">
+        {this.state.posts.map(post => (
+          <div key = {post.id}>
+        <header>
+          <img src= {post.userPicture} alt="user" />
+          <div className="post-user">
+            <strong>{post.user}</strong> 
+            <span>{post.location}</span>
+          </div>
+        </header>
+        <div className="post-image">
+          <img src={post.postPicture} alt="post" />
         </div>
-      </header>
-      <div className="post-image">
-        <img src="https://www.publicdomainpictures.net/pictures/90000/velka/mars.jpg" alt="post" />
+        <div className="post-likes" onClick = {this.curtir}>
+          <FiHeart />
+        </div>
+        <p>{post.description}</p>
+        </div>
+        ))}
       </div>
-      <div className="post-likes" onClick = {this.curtir}>
-        <FiHeart />
-      </div>
-      <p>Waving goodbye to a spacecraft.</p>
-    </div>
-  );
-}
+    );
+  }
 }
 
 function mapStateToProps(state){
   return{
-   user: state.payload
+  user: state.payload
   }
 }
 

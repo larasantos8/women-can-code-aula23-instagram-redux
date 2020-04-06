@@ -1,8 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import axios from 'axios'
 
 
 class Sidebar extends Component {
+  state = {
+    stories: []
+  }
+
+
+  componentDidMount = () => {
+    axios.get("http://localhost:3000/stories")
+      .then(resposta => {
+        this.setState({ stories: resposta.data })
+      })
+  }
+
+
   render(){
   return (
     <div>
@@ -19,16 +33,19 @@ class Sidebar extends Component {
 
       <div className="stories">
         <h2>Stories</h2>
-
+        {this.state.stories.map(storie => (
+        <div key = {storie.id}>
         <div className="storie">
           <div className="storie-image">
-            <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="user" />
+            <img src={storie.userPicture} alt="user" />
           </div>
           <div className="storie-user">
-            <strong>{this.props.storieUser}</strong>
-            <span>há 2 horas</span>
+            <strong>{storie.user}</strong>
+            <span>{storie.time}</span>
           </div>
         </div>
+        </div>
+        ))}
       </div>
     </div>
   );
@@ -41,9 +58,6 @@ function mapStateToProps(state){
     user: state.payload.name,
     username: state.payload.username,
     picture: state.profile.userPicture,
-    storiePicture: state.stories.userPicture,
-    storieUser: state.stories.user,
-    storieTime: state.stories.time
   }
 }
 
@@ -53,17 +67,3 @@ export default connect(mapStateToProps)(Sidebar)
 // "user": "natgeo",
 // "userPicture": "https://randomuser.me/api/portraits/men/11.jpg",
 // "time": "há 22 minutos"
-
-
-
-// {
-//   state.stories.map((item) => (
-//     <img key = {item.id} src={item.foto}></img>
-//   ))}
-
-
-// <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="user" />
-//           </div>
-//           <div className="storie-user">
-//             <strong>{this.props.storieUser}</strong>
-//             <span>{this.props.storieTime}</span>
