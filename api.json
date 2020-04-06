@@ -66,11 +66,11 @@
   },
   "perfil": {
     "userPicture": "https://randomuser.me/api/portraits/women/19.jpg",
-    "name": "Lara Santos",
+    "name": "larasantos",
     "age": 20,
     "joinAt": "09/12/2019",
-    "bio": "Dev Front end vida loca",
-    "site": "www.google.com",
+    "bio": "Iniciante em programação e apaixonada por tecnologia!",
+    "site": "https://www.linkedin.com/in/laarasantos12/",
     "stacks": [
       "React",
       "Redux",
@@ -79,6 +79,24 @@
       "ES6+",
       "HTML",
       "CSS"
+    ],
+    "imagens": [
+      {
+        "id": 1,
+        "foto": "https://neilpatel.com/wp-content/uploads/2017/07/pagina-de-contato-no-layout-de-site.jpeg"
+      },
+      {
+        "id": 2,
+        "foto": "https://www.webmaster.pt/wp-content/uploads/2015/10/thtml_salique-e1446032108574.jpg"
+      },
+      {
+        "id": 3,
+        "foto": "https://gestaodeprojetosdigitais.sfo2.cdn.digitaloceanspaces.com/2017/02/como-apresentar-o-layout-do-site-ao-cliente.jpg"
+      },
+      {
+        "id": 4,
+        "foto": "https://davisolucoes.com.br/sites/default/files/2019-06/angela-barroco-imoveis-mockup.jpg"
+      }
     ]
   }
 }

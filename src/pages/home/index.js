@@ -16,13 +16,13 @@ class Home extends Component{
       })
     })
 
-    await axios.get("http://localhost:3000/perfil")
-    .then(resposta => {
-      this.props.dispatch({
-        type: 'GET_PROFILE',
-        payload: resposta.data
-      })
-    })
+    // await axios.get("http://localhost:3000/perfil")
+    // .then(resposta => {
+    //   this.props.dispatch({
+    //     type: 'GET_PROFILE',
+    //     payload: resposta.data
+    //   })
+    // })
   }
   
   render(){

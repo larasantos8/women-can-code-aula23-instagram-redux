@@ -5,15 +5,14 @@ import Home from '../pages/home'
 import Perfil from '../pages/perfil'
 
 
-function Routes() {
+
+export default function Routes() {
   return (
     <BrowserRouter>
     <Switch>
-      <Route path="/" exact component={Home} />
+      <Route path="/" exact component={Home} /> 
       <Route path="/perfil" exact component={Perfil} />
     </Switch>
     </BrowserRouter>
   )
 }
-
-export default Routes
